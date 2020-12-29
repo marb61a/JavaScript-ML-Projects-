@@ -14,9 +14,38 @@ function sexToNumber(sex){
 }
 
 // Preparing input and output data
-function prepareData(data){
-    // Returns the first and last columns
+function prepareData(data, ratio = 29){
     return data.map(row => {
+        // Slices the last column from the json object and adds to an array
         const values = Object.values(row).slice(0, -1);
+        values[0] = sexToNumber(values[0]);
+
+        return {
+            input: values,
+            output: [row.rings / ratio]
+        }
     });
 }
+
+// const prepared = prepareData(abalone);
+// console.log(prepared);
+
+// Normailising the data to get the max ring value
+// This will generate an array that only holds the values of the rings
+// const rings = abalone.map(x => x.rings);
+// Will need to use the spread parameter with Math.max to avoid a NaN error
+// This is because Math.max expects numeric values
+// console.log(Math.max(...rings));
+
+const shuffle = (arr) => arr.sort(() => Math.random() - 0.5);
+const split = (arr, trainRatio = 0.75) => {
+    const l = Math.floor(arr.length * trainRatio);
+    return {
+        train: arr.slice(0, l),
+        test: arr.slice(l)
+    };
+};
+
+const prepared = shuffle(prepareData(abalone));
+console.log(prepared.train.length);
+console.log(prepared.test.length);
