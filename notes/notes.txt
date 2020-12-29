@@ -40,7 +40,27 @@ Entity
     - Intents can be thought of as functions and entities as their parameters
 
 Corpus
-    -
+    - This is the file or other media with the training information for the NUL\bot
+    - It will contain the intents and for each intent the utterances
+    - It will also contain the language, name of the corpus, validation utterances and answers
+        - Answers are for a Q&A corpus
+    - The plural is Corpora
+
+Channel
+    - A channel is where a chatbot can be deployed
+    - There are multiple places WhatsApp, Mobile, Web, API, Alexa, MS Teams and Facebook Messanger to name a few
+    - There should be only one backend which connects to multiple channels
+
+JS libraries
+    - Brain.js
+        - GPU accelerated Neural networks in JavaScript for Browsers and Node.js 
+        - https://brain.js.org/#/
+    - Tensorflow.js
+        - A library for machine learning in JavaScript 
+        - https://www.tensorflow.org/js
+
+Regressions
+    - Using both brain.js and Tensorflow.js for an Abelone example
 
 !!! When writing in a foreign language there may be special character which even native speakers may forget to add
     - For example there are a couple of above vowel characters in French called accents, in Spanish too and others
