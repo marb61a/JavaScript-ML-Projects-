@@ -1,3 +1,6 @@
+const brain = require("brain.js");
+const NeuralNetwork = brain.NeuralNetwork;
+
 const abalone = require("./data/abalone.json");
 
 // There are 3 genders in the file M, F and I for unknown
@@ -46,6 +49,22 @@ const split = (arr, trainRatio = 0.75) => {
     };
 };
 
-const prepared = shuffle(prepareData(abalone));
-console.log(prepared.train.length);
-console.log(prepared.test.length);
+const prepared = split(shuffle(prepareData(abalone)));
+// console.log(prepared.train.length);
+// console.log(prepared.test.length);
+const net = new NeuralNetwork();
+net.train(prepared.train, {
+    iterations: 500,
+    logPeriod: 10,
+    log: (str) => console.log(str)
+});
+
+let totalError = 0;
+
+prepared.test.forEach(item => {
+    const output = net.run(item.input);
+    console.log(`Expected: ${item.output * 29} Predicted: ${output * 29}`);
+    totalError += (output - item.output) ** 2;
+});
+
+console.log(totalError / prepared.test.length);
