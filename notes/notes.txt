@@ -18,6 +18,30 @@ NLG - Natural Language Generator
         - This will include gender, plurals, context etc
         - For example User has 1 new message and User has 2 new messages
 
+NER - Named Entity Recognition
+    - This extracts entities from natural language sentences
+        - It will recognise numbers, dates, emails, hashtags etc
+        - Numbers when declared numerically are the same in multiple languages eg 500
+        - This changes when the number is stated using alphabetical characters eg five hundred
+        - This means different extraction methods for different languages for dates, numbers, currencties etc
+
+Utterance
+    - This is a sentence in a natural language
+    - Usually utterances can be thought of as the sentences used to train a bot or by users
+
+Intent
+    - This is each of the different things that a chatbot knows how to answer
+    - When an utterance is received NLU classifies the utterance into intents
+
+Entity
+    - If intents are the various actions that a chatbot can execute
+        - then entities are the parameters that can be extracted from the utterances to provide arguments for actions
+    - For example if a chatbot can understand the intent "eat" and a person say "I want to eat pizza" then pizza is an entity
+    - Intents can be thought of as functions and entities as their parameters
+
+Corpus
+    -
+
 !!! When writing in a foreign language there may be special character which even native speakers may forget to add
     - For example there are a couple of above vowel characters in French called accents, in Spanish too and others
     - These change both the sound and in some case meaning of words so is important to remember
