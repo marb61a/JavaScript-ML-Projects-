@@ -1,0 +1,23 @@
+Conversational AI + NLP
+    - Python has a lot of AI libraries
+    - JavaScript has libraries which will help avoid having to work through Python\API
+
+NLP - Natural Language Processing
+    - This is the study of the interactions between computers and human languages
+    - It is a huge area and constantly evolving
+    - It is not just a sub area of AI but also Computation and Linguistics
+
+NLU - Natural Language Understanding
+    - A group of techniques to convert non-structured inputs in natural language in structured inputs that can be managed by a computer
+        - For example different languages have different ways of constructing sentences, some put the verb before the subject others the opposite approach
+    - One application is classification
+        - This is the most important part of a chatbot
+
+NLG - Natural Language Generator
+    - This converts computer output into natural language
+        - This will include gender, plurals, context etc
+        - For example User has 1 new message and User has 2 new messages
+
+!!! When writing in a foreign language there may be special character which even native speakers may forget to add
+    - For example there are a couple of above vowel characters in French called accents, in Spanish too and others
+    - These change both the sound and in some case meaning of words so is important to remember
