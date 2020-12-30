@@ -1,3 +1,4 @@
+const tf = require('@tensorflow/tfjs-node');
 const fs = require("fs");
 
 function sexToNumber(sex){
@@ -16,7 +17,33 @@ function getCsvSize(fileName){
     // the characters differ so regex is best
     const lines = fs.readFileSync(fileName, "utf-8").split(/\r?\n/);
     console.log(lines);
+
+    // Number of lines
+    return {
+        rows: lines.length -1,
+        columns: lines[0].split(",").length
+    };
+}
+
+function prepareData(filename){
+    const options = {
+        hasHeader: true,
+        columnConfigs: { rings: { isLabel: true }}
+    };
+
+    tf.data.csv(`file://${filename}`, options).map(row => ({
+        xs: Object.values(row.xs).map((x, i) => i === 0 ? sexToNumber(x) : x),
+        ys: [row.ys.rings]
+    }));
+
+}
+
+// Create topology of neural network
+function createModel(){
+    
 }
 
 const csvName = './data/abalone.csv';
-getCsvSize(csvName);
+const csvSize = getCsvSize(csvName);
+const data = prepareData(csvName);
+console.log(csvSize);
