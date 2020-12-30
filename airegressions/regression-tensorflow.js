@@ -39,11 +39,37 @@ function prepareData(filename){
 }
 
 // Create topology of neural network
-function createModel(){
+// By default activation is sigmoid
+function createModel(inputShape, activation = 'sigmoid', lr = 0.01){
+    const model = tf.sequential();
+
+    // Dense means dense connected
+    model.add(tf.layers.dense({
+        inputShape,
+        activation,
+        units: inputShape[0] * 2
+    }));
+
+    // A layer for output
+    model.add(tf.layers.dense({ units: 1 }));
+    model.compile({
+        optimizer: tf.train.sgd(lr),
+        loss: 'meanSquaredError'
+    });
+
+    return model;
+}
+
+async function main(){
+    const data = prepareData(csvName);
+    const size = getCsvSize(csvName);
+    const model = createModel([size.columns - 1]);
     
 }
 
 const csvName = './data/abalone.csv';
-const csvSize = getCsvSize(csvName);
-const data = prepareData(csvName);
-console.log(csvSize);
+main(csvName)
+
+// const csvSize = getCsvSize(csvName);
+// const data = prepareData(csvName);
+// console.log(csvSize);
