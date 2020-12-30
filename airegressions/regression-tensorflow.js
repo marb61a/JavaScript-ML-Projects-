@@ -1,3 +1,4 @@
+// const { train } = require('@tensorflow/tfjs-node');
 const tf = require('@tensorflow/tfjs-node');
 const fs = require("fs");
 
@@ -60,15 +61,29 @@ function createModel(inputShape, activation = 'sigmoid', lr = 0.01){
     return model;
 }
 
-async function main(){
+// Epochs are iterations
+async function train({ model, data, numRows, batchSize = 100, epochs = 200, trainRatio = .75 }){
+    const trainLength = Math.floor(numRows * trainRatio);
+    const trainBatches = Math.floor(trainLength / batchSize);
+    const shuffled = data.shuffle(100).batch(batchSize);
+    const trainData = shuffled.take(trainBatches);
+    const testData = shuffled.skip(trainBatches);
+    await model.fitDataset(trainData, { 
+        epochs, 
+        validationData: testData 
+    });
+}
+
+async function main(csvName){
     const data = prepareData(csvName);
     const size = getCsvSize(csvName);
     const model = createModel([size.columns - 1]);
-    
+
+    await train({ model, data, numRows: size.rows});
 }
 
 const csvName = './data/abalone.csv';
-main(csvName)
+main(csvName);
 
 // const csvSize = getCsvSize(csvName);
 // const data = prepareData(csvName);
