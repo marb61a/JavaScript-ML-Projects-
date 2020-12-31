@@ -32,7 +32,7 @@ function prepareData(filename){
         columnConfigs: { rings: { isLabel: true }}
     };
 
-    tf.data.csv(`file://${filename}`, options).map(row => ({
+    return tf.data.csv(`file://${filename}`, options).map(row => ({
         xs: Object.values(row.xs).map((x, i) => i === 0 ? sexToNumber(x) : x),
         ys: [row.ys.rings]
     }));
@@ -74,12 +74,24 @@ async function train({ model, data, numRows, batchSize = 100, epochs = 200, trai
     });
 }
 
+const tests = [
+    [0,0.505,0.4,0.125,0.583,0.246,0.13,0.175],
+    [1,0.45,0.345,0.105,0.4115,0.18,0.1125,0.135],
+    [1,0.505,0.405,0.11,0.625,0.305,0.16,0.175],
+    [0,0.53,0.41,0.13,0.6965,0.302,0.1935,0.2],
+];
+
 async function main(csvName){
     const data = prepareData(csvName);
     const size = getCsvSize(csvName);
     const model = createModel([size.columns - 1]);
 
     await train({ model, data, numRows: size.rows});
+    for (let i = 0; i < tests.length; i += 1) {
+        const test = tests[i];
+        const output = model.predict(tf.tensor2d([test]));
+        console.log(output.dataSync());
+    }
 }
 
 const csvName = './data/abalone.csv';
