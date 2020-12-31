@@ -58,9 +58,37 @@ JS libraries
     - Tensorflow.js
         - A library for machine learning in JavaScript 
         - https://www.tensorflow.org/js
+        - npm install @tensorflow/tfjs-node (When installing on node!!)
+    - These may be similar but Tensorflow is probably more complete
+        - Also Tensorflow is asynchronous where as Brain.js is not
+        - There may also be a need to rebuild bindings if environmental variables are changed
 
 Regressions
     - Using both brain.js and Tensorflow.js for an Abelone example
+    - This will be calculating the age of the Abelone from the rings
+
+AI - Artificial Intelligence
+    - Machine Learning and Deep Learning are part of AI
+    - Deep Learning is a subset of Machine Learning
+
+Classifiers
+    - There are multiple classifiers, again a Brain.js and Tensorflow.js version will be done
+    - Classification will include normalization and tokenisation
+    - Text classification is the process of assigning tags or categories to text according to its content
+        - It is a fundamental tasks of NLP and has broad applications
+        - These include sentiment analysis, topic labeling, spam detection, and intent detection
+    - Text classification can be done two different ways: manual or automatic classification
+        - The latter is where NLP, AI and Machine Learning come in
+    - There are many approaches to automatic NLP text classification, which fall into into three types of systems:
+        - Rule-Based Systems
+            - Rule-based approaches classify text into organized groups by using a set of handcrafted linguistic rules
+            - These rules instruct the system to use semantically relevant elements of a text to identify relevant categories based on its content
+            - Each rule consists of an antecedent or pattern and a predicted category
+            - Rule-based systems are human comprehensible and can be improved over time
+            - There are disadvantages to using this approach
+                - There is specific in-depth domain knowledge needed
+        - Machine learning-based systems
+        - Hybrid Systems
 
 !!! When writing in a foreign language there may be special character which even native speakers may forget to add
     - For example there are a couple of above vowel characters in French called accents, in Spanish too and others
