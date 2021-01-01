@@ -87,8 +87,29 @@ Classifiers
             - Rule-based systems are human comprehensible and can be improved over time
             - There are disadvantages to using this approach
                 - There is specific in-depth domain knowledge needed
+                - There is usually a lot of testing and analysis needed which makes this approach very time consuming
+                - This approach is also difficult to maintain and may not scale well
         - Machine learning-based systems
+            - Machine learning text classification learns to make classifications based on past observations
+            - By using pre-labeled examples as training data, machine learning algorithms can learn the different associations between pieces of text
+            - A “tag” is the pre-determined classification or category that any given text could fall into
+            - The first step in training a machine learning NLP classifier is feature extraction which is a method to transform text into numerical values
+                - This representation is in the form of a vector
+                - One of the most frequently used approaches is bag of words, where a vector represents the frequency of a word in a predefined dictionary of words
+            - There are multiple machine learning algorithms for creating text classification models
+                - These include the Naive Bayes family of algorithms, support vector machines (SVM), and deep learning
         - Hybrid Systems
+            - Hybrid systems combine a machine learning-trained base classifier with a rule-based system, used to further improve the results
+            - These can be easily fine-tuned by adding specific rules for those conflicting tags that haven’t been correctly modeled by the base classifier
+
+!! Normalization
+    - https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/String/normalize
+
+!! Natural
+    - This package is a general natural language facility for nodejs
+        - https://github.com/NaturalNode/natural
+    - npm install natural
+    - There are several tokenisers available in this package
 
 !!! When writing in a foreign language there may be special character which even native speakers may forget to add
     - For example there are a couple of above vowel characters in French called accents, in Spanish too and others
