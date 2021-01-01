@@ -1,11 +1,2 @@
-class BrainClassifier {
-    train(corpus){
-
-    }
-
-    process(utterance){
-        
-    }
-}
-
-module.exports = BrainClassifier();
+const BrainClassifier = require('./classifiersexamples/brain-classifier');
+const corpus = require('./data/corpus-en.json');
