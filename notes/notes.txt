@@ -101,9 +101,22 @@ Classifiers
         - Hybrid Systems
             - Hybrid systems combine a machine learning-trained base classifier with a rule-based system, used to further improve the results
             - These can be easily fine-tuned by adding specific rules for those conflicting tags that haven’t been correctly modeled by the base classifier
+        - Metrics And Evaluation
+            - Cross-validation is a common method to evaluate the performance of a text classifier
+            - It works by splitting the training dataset into random, equal-length example sets
+            - Then the classifiers make predictions on their respective sets, and the results are compared against the human-annotated tags
+            - This will determine when a prediction was right (true positives and true negatives) and when it made a mistake (false positives, false negatives)
+        - Why is Text Classification Important
+            - Estimates reckon that approxiamtely 80% of all information is unstructured, with text being one of the most common types of unstructured data
+            - The nature of text data is messy which makes analyzing, understanding, organizing, and sorting through it hard and time-consuming
+            - This is where machine learning text classification comes in as using text classifiers, companies can automatically structure all manner of relevant text
 
 !! Normalization
     - https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/String/normalize
+
+!!! When writing in a foreign language there may be special character which even native speakers may forget to add
+    - For example there are a couple of above vowel characters in French called accents, in Spanish too and others
+    - These change both the sound and in some case meaning of words so is important to remember
 
 !! Natural
     - This package is a general natural language facility for nodejs
@@ -111,6 +124,13 @@ Classifiers
     - npm install natural
     - There are several tokenisers available in this package
 
-!!! When writing in a foreign language there may be special character which even native speakers may forget to add
-    - For example there are a couple of above vowel characters in French called accents, in Spanish too and others
-    - These change both the sound and in some case meaning of words so is important to remember
+!! NLPJS    
+    - Another package is NLPJS
+    - An NLP library for building bots, with entity extraction, sentiment analysis, automatic language identify, and more
+        - These are available in each language
+    - https://github.com/axa-group/nlp.js#readme
+    - To install the version for English (multiple languages available)
+        - npm install @nlpjs/lang-en
+    - NLPJS has a package for generating vectors from words
+        - npm install @nlpjs/utils
+
