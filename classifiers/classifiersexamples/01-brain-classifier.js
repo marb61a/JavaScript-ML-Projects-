@@ -17,7 +17,7 @@ class BrainClassifier {
     constructor(settings){
         this.settings = settings || defaultNetOptions;
         this.tokenizer = new TokenizerEn();
-        this.stemmer = settings.stemmer || {
+        this.stemmer = this.settings.stemmer || {
             tokenizeAndStem: (str) => this.tokenizer.tokenize(str, true)
         };
     }
@@ -27,10 +27,19 @@ class BrainClassifier {
         // console.log(this.lookups);
         
         this.net = new NeuralNetwork();
+        this.net.train(this.lookups.trainVectors, this.settings);
+
+        // console.log(this.lookups.trainVectors);
     }
 
     process(utterance){
+        const vector = this.lookups.inputToVector(utterance);
+        // console.log(vector);
 
+        const output = this.net.run(vector);
+        // return output;
+
+        return this.lookups.vectorToClassifications(output);        
     }
 }
 
