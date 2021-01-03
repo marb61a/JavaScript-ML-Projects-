@@ -14,10 +14,10 @@ const defaultNetOptions = {
 };
 
 class BrainClassifier {
-    constructor(settings){
+    constructor(settings, stemmer){
         this.settings = settings || defaultNetOptions;
         this.tokenizer = new TokenizerEn();
-        this.stemmer = this.settings.stemmer || {
+        this.stemmer = stemmer || {
             tokenizeAndStem: (str) => this.tokenizer.tokenize(str, true)
         };
     }
