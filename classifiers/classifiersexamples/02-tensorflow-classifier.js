@@ -9,6 +9,10 @@ class TensorflowClassifier{
         this.stemmer = stemmer || { tokenizeAndStem: (str) => this.tokenizer.tokenize(str, true) };
     }
 
+    createModel(){
+        
+    }
+
     // Tensorflow is async
     async train(corpus){
         this.lookups = new CorpusLookup(corpus, this.stemmer);
@@ -17,7 +21,7 @@ class TensorflowClassifier{
     process(utterance){
 
     }
-    
+
 }
 
 module.exports = TensorflowClassifier;
