@@ -1,28 +1,19 @@
-const { CorpusLookup } = require('@nlpjs/utils');
-const { TokenizerEn } = require('@nlpjs/lang-en');
-const { NeuralNetwork } = require('@nlpjs/neural');
+const NlpjsClassifier = require('./classifiers/nlpjs-classifier');
+const corpus = require('./data/corpus-en.json');
 
-class NlpjsClassifier {
-    constructor(settings = {}, stemmer){
-        this.settings = settings;
-        this.tokenizer = new TokenizerEn();
-        this.stemmer = stemmer || { tokenizeAndStem: (str) => this.tokenizer.tokenize(str, true) };
-    }
+const classifier = new NlpjsClassifier({ log: true });
+classifier.train(corpus);
 
-    train(corpus){
-        // False is added as a parameter to use objects instead of vectors
-        this.lookups = new CorpusLookup(corpus, this.stemmer, false);
-        this.net = new NeuralNetwork(this.settings);
-        this.net.train(this.lookups.trainData);
-    }
+let total = 0;
+let good = 0;
+corpus.data.forEach(item => {
+    item.tests.forEach(test => {
+        const classifications = classifier.process(test);
+        total += 1;
+        if (classifications[0].intent === item.intent) {
+            good += 1;
+        }
+    });
+});
 
-    process(utterance){
-        // Objects will be passed in rather than vectors
-         const obj = this.lookups.prepareInput(utterance);
-         const output = this.net.run(obj);
-         return this.lookups.objToClassifications(output);
-    }
-    
-}
-
-module.exports = NlpjsClassifier;
+console.log(`${good} good of a total of ${total} (${good * 100 / total}%)`);
