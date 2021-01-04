@@ -1,4 +1,4 @@
-const TensorflowClassifier = require('./classifiers/tensorflow-classifier');
+const TensorflowClassifier = require('./classifiersexamples/02-tensorflow-classifier');
 const corpus = require('./data/corpus-en.json');
 
 async function main(){

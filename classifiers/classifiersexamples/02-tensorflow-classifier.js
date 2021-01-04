@@ -1,7 +1,6 @@
 const tf = require('@tensorflow/tfjs-node');
 const { CorpusLookup } = require('@nlpjs/utils');
 const { TokenizerEn } = require('@nlpjs/lang-en');
-const { mod } = require('@tensorflow/tfjs-node');
 
 class TensorflowClassifier{
     constructor(settings, stemmer) {
@@ -12,14 +11,15 @@ class TensorflowClassifier{
 
     createModel(numFeatures, numClasses){
         const model = tf.sequential();
-        model.add({
+        model.add(tf.layers.dense({
             inputShape: [numFeatures],
             activation: "linear",
-            units: numClasses
-        });
-        model.add(tf.layers.softmax);
+            units: numClasses,
+        }));
+        model.add(tf.layers.softmax());
 
         model.compile({
+            // Using a different optimiser may not have much of an effect in this case
             optimizer: tf.train.adagrad(0.5),
             loss: "categoricalCrossentropy"
         });
@@ -33,16 +33,26 @@ class TensorflowClassifier{
             ys: []
         };
 
-        
+        this.lookups.trainVectors.forEach(vector => {
+            result.xs.push(vector.input);
+            result.ys.push(vector.output);
+        });
+
+        return result;
     }
 
     // Tensorflow is async
     async train(corpus){
         this.lookups = new CorpusLookup(corpus, this.stemmer);
+        this.net = this.createModel(this.lookups.numInputs, this.lookups.numOutputs);
+        const data = this.getTrainingData();
+        await this.net.fit(tf.tensor(data.xs), tf.tensor(data.ys), { epochs: 200 });
     }
 
     process(utterance){
-
+        const vector = this.lookups.inputToVector(utterance);
+        const output = this.net.predict(tf.tensor([vector]));
+        return this.lookups.vectorToClassifications(output.dataSync());
     }
 
 }
