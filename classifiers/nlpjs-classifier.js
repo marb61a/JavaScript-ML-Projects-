@@ -1,4 +1,4 @@
-const NlpjsClassifier = require('./classifiers/nlpjs-classifier');
+const NlpjsClassifier = require('./classifiersexamples/03-nlpjs-classifier');
 const corpus = require('./data/corpus-en.json');
 
 const classifier = new NlpjsClassifier({ log: true });
