@@ -26,6 +26,10 @@ class Perceptron {
         return this.activation(sum);
     }
 
+    calculateDelta(output, error){
+        return output > 0 ? error : this.alpha * error;
+    }
+
     train(data){
         let error = 0;
 
@@ -36,7 +40,17 @@ class Perceptron {
             const currentError = expectedOutput - predictedOutput;
 
             if(currentError !== 0){
-                
+                error += currentError ** 2;
+                const delta = this.calculateDelta(predictedOutput, currentError) * this.learningRate;
+
+                for(let j = 0; j < input.keys.length; j += 1){
+                    const key = input.keys[j];
+                    const change = delta * input.data[key] + this.momentum * this.changes[key];
+                    this.changes[key] = change;
+                    this.weights[key] += change;
+                }
+
+                this.bias += delta;
             }
         }
 
