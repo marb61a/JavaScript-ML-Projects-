@@ -1,11 +1,18 @@
 class Perceptron {
     constructor(settings){
+        this.id = settings.id;
+        this.label = settings.label;
+        this.numInputs = settings.numInputs;
+        this.weights = new Float32Array(this.numInputs);
+        this.changes = new Float32Array(this.numInputs);
+        this.momentum = settings.momentum;
         this.bias = 0;
-        
+        this.alpha = settings.alpha;
+        this.learningRate = settings.learningRate;
     }
 
-    activation(){
-
+    activation(value){
+        return value <= 0 ? 0 : this.alpha * value;
     }
 
     // Again will make use of intents like in brain-js classifier
@@ -19,7 +26,22 @@ class Perceptron {
         return this.activation(sum);
     }
 
-    
+    train(data){
+        let error = 0;
+
+        for(let i = 0; i < data.length; i += 1){
+            const { input, output } = data[i];
+            const predictedOutput = this.run(input);
+            const expectedOutput = output[this.id] || 0;
+            const currentError = expectedOutput - predictedOutput;
+
+            if(currentError !== 0){
+                
+            }
+        }
+
+        return error;
+    }
 }
 
 module.exports = Perceptron;
