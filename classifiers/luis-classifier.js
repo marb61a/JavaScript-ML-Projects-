@@ -11,4 +11,28 @@ function exportCorpus(){
 
 }
 
-exportCorpus();
+async function main(){
+    let total = 0;
+    let good = 0;
+
+    for(let i = 0; i < corpus.data.length; i += 1){
+        const item = corpus.data[i];
+
+        for(let j = 0; j < item.tests.length; j += 1){
+            const test = item.tests[j];
+            const output = await luis.processUtterance(test);
+            total += 1;
+
+            if(output.prediction.topIntent){
+                good += 1;
+            }
+
+            console.log(`${good} good from a total of ${total} which is ${good * 100 / total}%`);
+        }
+    }
+
+    console.log(`${good} good from a total of ${total} which is ${good * 100 / total}%`);
+}
+
+// exportCorpus();
+main();
