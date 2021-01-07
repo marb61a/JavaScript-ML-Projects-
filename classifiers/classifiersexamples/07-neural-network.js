@@ -40,6 +40,33 @@ class NeuralNetwork{
 
         return this.outputs;
     }
+
+    train(data, numInputs, labels){
+        this.initialize(numInputs, labels);
+        this.status = {
+            error: Infinity,
+            iterations: 0
+        };
+
+        while(this.status.iterations < this.settings.maxIterations && this.status.error > this.settings.errorTresh){
+            const hrstart = new Date();
+            this.status.iterations += 1;
+            this.status.error = 0;
+
+            for(let i = 0; i < this.perceptrons.length; i += 1){
+                const perceptron = this.perceptrons[i];
+                this.status.error += perceptron.train(data);
+            }
+
+            this.status.error /= this.perceptrons.length * data.length;
+            const hrend = new Date();
+            const elapsed = hrend.getTime() - hrstart.getTime();
+            console.log(`Iteration: ${this.status.iterations} Error: ${this.status.error} Time: ${elapsed}ms`);
+        }
+        
+        return this.status;
+    }
+
 }
 
 module.exports = NeuralNetwork;
