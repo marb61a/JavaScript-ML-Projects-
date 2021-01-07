@@ -9,7 +9,7 @@ const defaultSettings = {
 };
 
 class NeuralNetwork{
-    constructor(settigns){
+    constructor(settings){
         this.settings = settings || defaultSettings;
     }
     

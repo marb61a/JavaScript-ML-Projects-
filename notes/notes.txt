@@ -55,6 +55,9 @@ JS libraries
     - Brain.js
         - GPU accelerated Neural networks in JavaScript for Browsers and Node.js 
         - https://brain.js.org/#/
+        - May not return exactly the same prediction
+            - This is becasue the initialisation of the weights is not 0 but a random number
+            - Each time a progam is ran there will be different values but should be within a range
     - Tensorflow.js
         - A library for machine learning in JavaScript 
         - https://www.tensorflow.org/js
@@ -62,6 +65,8 @@ JS libraries
     - These may be similar but Tensorflow is probably more complete
         - Also Tensorflow is asynchronous where as Brain.js is not
         - There may also be a need to rebuild bindings if environmental variables are changed
+    - NLP.js
+        - It has a Neural model which can be used similar to Brain.js
 
 Regressions
     - Using both brain.js and Tensorflow.js for an Abelone example
@@ -134,3 +139,21 @@ Classifiers
     - NLPJS has a package for generating vectors from words
         - npm install @nlpjs/utils
 
+MS Luis Classifier
+    - Will need both an Azure account and a Luis account
+        - https://www.luis.ai/
+    - Azure has a 12 month free trial or pay as you go
+    - Will need to install the nlpjs/nlu-luis package
+        - npm install @nlpjs/nlu-luis
+
+Perceptron (Building Your Own)
+    - This will be the first part of building a custom classifier
+    - https://en.wikipedia.org/wiki/Perceptron
+    - The second part will be to build the Neural Network section
+    
+Classify Using NLPJS
+    - Not the same as previous as NLPJS provided the Neural Network
+        - The Neural Network is low level and NLPJS has several layers built on it
+    - This will build the NLPJS suite which will use the NLP Basic package
+        - npm install @nlpjs/basic
+    - 
