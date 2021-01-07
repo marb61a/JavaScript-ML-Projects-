@@ -2,8 +2,9 @@ const { dockStart } = require('@nlpjs/basic');
 const corpus = require('./data/corpus-en.json');
 
 async function main(){
-    const dock = await({
+    const dock = await dockStart({
         // Need to use the correct language plugin
+        // If there is not a language plugin there will be less good items
         use: ['Basic', 'LangEn']
     });
     const nlp = dock.get("nlp");
