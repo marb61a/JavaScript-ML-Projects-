@@ -38,6 +38,22 @@ async function trainClassifier(){
     await classifier.train(corpus);
 }
 
+async function measure(classifier){
+    await trainClassifier(classifier, corpusAskubuntu);
+    const askubuntu = await measureCorpus(classifier, corpusAskubuntu);
+
+    await trainClassifier(classifier, corpusChatbot);
+    const chatbot = await measureCorpus(classifier, corpusChatbot);
+
+    await trainClassifier(classifier, corpusWebapp);
+    const webapp = await measureCorpus(classifier, corpusWebapp);
+
+    const total = askubuntu.total + chatbot.total + webapp.total;
+    const good = askubuntu.good + chatbot.good + webapp.good;
+
+    return { total, good, name: classifier.constructor.name };
+}
+
 async function main(){
     const dock = await dockStart({
         use: ['Basic', 'LangEn']
@@ -45,7 +61,24 @@ async function main(){
     const nlp = dock.get("nlp");
     nlp.addCorpus(corpus);
     const classifiers = [];
+
+    classifiers.push(new BrainClassifier());
+    classifiers.push(new TensorflowClassifier());
+    classifiers.push(new NlpjsClassifier());
+    classifiers.push(new OwnClassifier());
+    classifiers.push(nlp);
+    const outputs = [];
     
+    for(let i = 0; i < classifiers.length; i += 1){
+        const classifier = classifiers[i];
+        const output = await measure(classifier);
+        outputs.push(output);
+    }
+
+    for(let i = 0; i < outputs.length; i += 1){
+        const { name, good, total } = outputs[i];
+        console.log(`${name} - ${good} good from a total of ${total} which is ${good * 100 / total}%`);
+    }
 }
 
 main();

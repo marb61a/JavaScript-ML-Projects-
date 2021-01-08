@@ -50,7 +50,7 @@ async function main(){
 
     for(let i = 0; i < outputs.length; i += 1){
         const { name, good, total } = outputs[i];
-        console.log(`${good} good from a total of ${total} which is ${good * 100 / total}%`);
+        console.log(`${name} - ${good}  good from a total of ${total} which is ${good * 100 / total}%`);
     }
 }
 
