@@ -156,4 +156,26 @@ Classify Using NLPJS
         - The Neural Network is low level and NLPJS has several layers built on it
     - This will build the NLPJS suite which will use the NLP Basic package
         - npm install @nlpjs/basic
-    - 
+
+!!! - RASA
+    - Rasa Open Source is a machine learning framework to automate text- and voice-based assistants
+        - https://rasa.com/
+        - https://rasa.com/docs/rasa/playground/
+
+SIGDIAL 22
+    - A paper about NLU Evaluation
+    - Corpora for evaluating NLU services (like API.ai, RASA, Microsoft LUIS, ...) 
+        - https://github.com/sebischair/NLU-Evaluation-Corpora
+        - https://wwwmatthes.in.tum.de/pages/2lilqthsigbu/Vertical-Social-Software-VSS
+    -
+
+Stemming
+    - Stemming is the process of producing morphological variants of a root/base word
+        - Stemming programs are commonly referred to as stemming algorithms or stemmers
+        - A stemming algorithm reduces the words “chocolates”, “chocolatey”, “choco” to the root word, “chocolate”
+        - https://www.geeksforgeeks.org/introduction-to-stemming/
+        - https://www.geeksforgeeks.org/nlp-how-tokenizing-text-sentence-words-works/
+    - https://snowballstem.org/
+    - A small string processing language for creating stemming algorithms for use in Information Retrieval, plus a collection of stemming algorithms implemented
+    -
+    
