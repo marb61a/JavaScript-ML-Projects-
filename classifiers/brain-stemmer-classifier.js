@@ -1,12 +1,8 @@
-const { TokenizerEn } = require('@nlpjs/lang-en');
+const { StemmerEn } = require('@nlpjs/lang-en');
 const BrainClassifier = require('./classifiersexamples/01-brain-classifier');
 const corpus = require('./data/corpus-en.json');
 
-const tokenizer = new TokenizerEn();
-const stemmer = {tokenizeAndStem: (str) => {
-    tokenizer.tokenize(str, true).map(token => PorterStemmer.stem(token))
-}};
-
+const stemmer = new StemmerEn();
 const classifier = new BrainClassifier(undefined, stemmer);
 classifier.train(corpus);
 
