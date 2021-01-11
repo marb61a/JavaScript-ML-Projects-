@@ -29,7 +29,7 @@ async function measureCorpus(classifier, corpus){
     return { total, good, name: classifier.constructor.name };
 }
 
-async function trainClassifier(){
+async function trainClassifier(classifier, corpus){
     if(classifier.addCorpus){
         classifier.removeLanguage('en');
         classifier.addCorpus(corpus);
@@ -59,7 +59,7 @@ async function main(){
         use: ['Basic', 'LangEn']
     });
     const nlp = dock.get("nlp");
-    nlp.addCorpus(corpus);
+    // nlp.addCorpus(corpus);
     const classifiers = [];
 
     classifiers.push(new BrainClassifier());
