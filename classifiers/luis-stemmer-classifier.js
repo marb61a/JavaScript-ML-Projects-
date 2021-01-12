@@ -4,6 +4,32 @@ const fs = require('fs');
 const { NluLuis } = require('@nlpjs/nlu-luis');
 const corpus = require('./data/corpus-en.json');
 
+function stemCorpus(corpus){
+    const stemmer = new StemmerEn();
+
+    corpus.data.forEach(item => {
+        for(let i = 0; i < item.utterances.length; i += 1){
+            item.utterances[i] = stemmer.tokenizeAndStem(item.utterances[i]).join(' ');
+        }
+
+        for (let i = 0; i < item.tests.length; i += 1) {
+            item.tests[i] = stemmer.tokenizeAndStem(item.tests[i]).join(' ');
+        }  
+    });
+}
+
+stemCorpus(corpus);
+console.log(JSON.stringify(corpus, null, 2));
+const luis = new NluLuis({
+    luisUrl:  process.env.LUIS_URL_STEMMED
+});
+
+function exportCorpus(){
+    const json = luis.fromCorpus(corpus);
+    fs.writeFileSync("./data/corpus-en-luis.json", JSON.stringify(json, null, 2), "utf-8");
+
+}
+
 async function main(){
     let total = 0;
     let good = 0;
