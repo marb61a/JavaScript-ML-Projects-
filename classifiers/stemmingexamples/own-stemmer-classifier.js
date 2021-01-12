@@ -1,9 +1,9 @@
 const { StemmerEn } = require('@nlpjs/lang-en');
-const BrainClassifier = require('./classifiersexamples/01-brain-classifier');
-const corpus = require('./data/corpus-en.json');
+const OwnClassifier = require('../classifiersexamples/06-own-classifier');
+const corpus = require('../data/corpus-en.json');
 
 const stemmer = new StemmerEn();
-const classifier = new BrainClassifier(undefined, stemmer);
+const classifier = new OwnClassifier(undefined, stemmer);
 classifier.train(corpus);
 
 let total = 0;

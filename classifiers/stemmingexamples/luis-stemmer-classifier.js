@@ -2,7 +2,7 @@ require('dotenv').config();
 const { StemmerEn } = require('@nlpjs/lang-en');
 const fs = require('fs');
 const { NluLuis } = require('@nlpjs/nlu-luis');
-const corpus = require('./data/corpus-en.json');
+const corpus = require('../data/corpus-en.json');
 
 function stemCorpus(corpus){
     const stemmer = new StemmerEn();

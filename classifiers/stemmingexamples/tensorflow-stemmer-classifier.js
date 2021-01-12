@@ -1,6 +1,6 @@
 const { StemmerEn } = require('@nlpjs/lang-en');
-const BrainClassifier = require('./classifiersexamples/02-tensorflow-classifier');
-const corpus = require('./data/corpus-en.json');
+const BrainClassifier = require('../classifiersexamples/02-tensorflow-classifier');
+const corpus = require('../data/corpus-en.json');
 
 async function main(){
     const stemmer = new StemmerEn();
