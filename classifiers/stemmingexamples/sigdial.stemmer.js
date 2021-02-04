@@ -29,3 +29,32 @@ async function measureCorpus(classifier, corpus){
 
     return { total, good, name: classifier.constructor.name};
 }
+
+async function trainClassifier(classifier, corpus){
+    if(classifier.addCorpus){
+        classifier.removeLanguage('en');
+        classifier.addCorpus(corpus);
+    }
+
+    await classifier.train(corpus);
+}
+
+async function measure(classifier){
+
+}
+
+async function main(){
+    const dock = await dockStart({ use: ['Basic', 'LangEn'] });
+    const nlp = dock.get('nlp');
+    const classifiers = [];
+    const stemmer = new StemmerEn();
+
+    classifiers.push(new BrainClassifier(undefined, stemmer));
+    classifiers.push(new TensorflowClassifier(undefined, stemmer));
+    classifiers.push(new NlpjsClassifier(undefined, stemmer));
+    classifiers.push(new OwnClassifier(undefined, stemmer));
+    classifiers.push(nlp);
+
+}
+
+main();
