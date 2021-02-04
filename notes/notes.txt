@@ -167,15 +167,20 @@ SIGDIAL 22
     - Corpora for evaluating NLU services (like API.ai, RASA, Microsoft LUIS, ...) 
         - https://github.com/sebischair/NLU-Evaluation-Corpora
         - https://wwwmatthes.in.tum.de/pages/2lilqthsigbu/Vertical-Social-Software-VSS
-    -
+    - http://workshop.colips.org/wochat/@sigdial2017/documents/SIGDIAL22.pdf
+        - Paper for understanding chatbots
+        - There are comparisons between various types of chatbots
 
 Stemming
     - Stemming is the process of producing morphological variants of a root/base word
+        - Basically it is calculating the root of a word
         - Stemming programs are commonly referred to as stemming algorithms or stemmers
         - A stemming algorithm reduces the words “chocolates”, “chocolatey”, “choco” to the root word, “chocolate”
         - https://www.geeksforgeeks.org/introduction-to-stemming/
         - https://www.geeksforgeeks.org/nlp-how-tokenizing-text-sentence-words-works/
     - https://snowballstem.org/
     - A small string processing language for creating stemming algorithms for use in Information Retrieval, plus a collection of stemming algorithms implemented
-    -
+
+NLPJS Stemming
+    - Supports 41 different Languages
     
